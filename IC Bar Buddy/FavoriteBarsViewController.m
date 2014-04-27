@@ -189,7 +189,7 @@
         PFQuery *query3 = [PFQuery queryWithClassName:@"Bars"];
         [query3 getObjectInBackgroundWithId:[self.curUser.favoriteBars objectAtIndex:indexPath.row][0] block:^(PFObject *object, NSError *error) {
             bar.NumberCheckedIn = [object objectForKey:@"Number_Checked_in"];
-            NSLog(@"%@", bar.NumberCheckedIn);
+            //NSLog(@"%@", bar.NumberCheckedIn);
         }];
         
         destViewController.bar = bar;

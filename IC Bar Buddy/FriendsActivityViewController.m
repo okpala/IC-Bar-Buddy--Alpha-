@@ -108,10 +108,10 @@
         //NSLog(@"%@", item[@"FacebookID"]);
         if ([friend[@"uid"] isEqualToString: item[@"FacebookID"]]){
             if ([item[@"CurrentBar"] isEqualToString: @"NA"]){
-                UILabel *textLabel = (UILabel*) [cell viewWithTag:101];
+                UILabel *textLabel = (UILabel*) [cell viewWithTag:102];
                 textLabel.text = @"- Checked-in nowhere";
                 
-                UILabel *barNameLabel = (UILabel*) [cell viewWithTag:102];
+                UILabel *barNameLabel = (UILabel*) [cell viewWithTag:101];
                 barNameLabel.text = @"";
             }
             else{

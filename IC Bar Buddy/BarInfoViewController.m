@@ -121,17 +121,6 @@
             
         }];
         
-        /*PFQuery *query5 = [PFQuery queryWithClassName:@"Bars"];
-        [query5 getObjectInBackgroundWithId:bar.barID block:^(PFObject *curBar, NSError *error) {
-            
-            //NSLog(@"%@", curBar);
-            int amount = [[curBar objectForKey:@"Number_Checked_in"] intValue] + 1;
-            [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
-            [curBar saveInBackground];
-            self.NumberOfPeopleCheckedInLabel.text = [NSString stringWithFormat:@"%@" , curBar[@"Number_Checked_in"]];
-            bar.barID = [curBar objectId];
-        }];
-        [self.checkInButton setTitle:@"Check-out" forState:UIControlStateNormal];*/
        
     }
     else{
