@@ -11,5 +11,4 @@
 
 @interface FavoriteBarsViewController : PFQueryTableViewController
 
-
 @end

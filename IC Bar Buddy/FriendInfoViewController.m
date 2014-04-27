@@ -85,6 +85,8 @@
     }
     //NSLog(@"red");
 }
+
+//BRITTANY DESIGN THIS LABEL
 - (void)displayLabel{
     if ([self.curUser.selectedFriend count] == 0){
         //[self.tableView setHidden:YES];
