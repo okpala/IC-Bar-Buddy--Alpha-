@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>8B2CB1BE-3859-4EB9-B547-E9E9FE7D7951</string>
+	<string>83920058-7859-49B2-87DF-4A4D04CEB77C</string>
 	<key>IDESourceControlProjectName</key>
 	<string>IC Bar Buddy</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B93DECB7-9536-409F-95C8-98016B64FEDD</key>
-		<string>https://github.com/okpala/IC-Bar-Buddy.git</string>
+		<key>ED85BE9E-9F61-447D-865D-13FBDEC30AF7</key>
+		<string>https://github.com/okpala/IC-Bar-Buddy--Alpha-.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>IC Bar Buddy.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B93DECB7-9536-409F-95C8-98016B64FEDD</key>
+		<key>ED85BE9E-9F61-447D-865D-13FBDEC30AF7</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/okpala/IC-Bar-Buddy.git</string>
+	<string>https://github.com/okpala/IC-Bar-Buddy--Alpha-.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B93DECB7-9536-409F-95C8-98016B64FEDD</string>
+	<string>ED85BE9E-9F61-447D-865D-13FBDEC30AF7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B93DECB7-9536-409F-95C8-98016B64FEDD</string>
+			<string>ED85BE9E-9F61-447D-865D-13FBDEC30AF7</string>
 			<key>IDESourceControlWCCName</key>
-			<string>IC Bar Buddy</string>
+			<string>IC Bar Buddy (Alpha)</string>
 		</dict>
 	</array>
 </dict>

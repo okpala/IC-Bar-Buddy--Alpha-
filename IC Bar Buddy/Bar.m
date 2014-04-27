@@ -15,5 +15,5 @@
 @synthesize barHours;
 @synthesize barPhone;
 @synthesize barID;
-
+@synthesize NumberCheckedIn;
 @end

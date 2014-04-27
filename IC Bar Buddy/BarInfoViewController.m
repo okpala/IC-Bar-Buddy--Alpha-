@@ -56,8 +56,8 @@
             //if the user is checking into a bar and their Current Bar status is "NA"
             if ([self.curUser.currentBar isEqualToString:@"NA"]){
                  NSLog(@"Not at a bar");
-                /*
-                [user setObject:bar.barName forKey:@"CurrentBar"];
+                
+                [user setObject:bar.barName forKey:@"CurrentBar"];/*
                 NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
                 [dateformate setDateFormat:@"EEEE, dd MMMM yyyy hh:mm a"];
                 NSString *date_String=[dateformate stringFromDate:[NSDate date]];
@@ -70,6 +70,7 @@
                 NSString *date_String = [formatter stringFromDate:[NSDate date]];
                 [user setObject:date_String forKey:@"TimeCheckedIn"];
                 [user addUniqueObject:@[bar.barName, date_String] forKey:@"BarActivity"];
+                
                 [user saveInBackground];
                 self.curUser.userBarActivity =[[user[@"BarActivity"] reverseObjectEnumerator] allObjects];
                 self.curUser.currentBar = user[@"CurrentBar"];
@@ -78,7 +79,7 @@
             
             //When a user checks into a new bar, need to decrease the Number_checked_in of the previous bar by 1. Whenever the Current Bar status is equal to anything other than "NA"
             }else {
-                
+                NSLog(@"In Bar");
                 PFQuery *CheckOut = [PFQuery queryWithClassName:@"Bars"];
                 [CheckOut whereKey:@"Name" equalTo:self.curUser.currentBar];
                 [CheckOut findObjectsInBackgroundWithBlock:^(NSArray *curBar, NSError *error) {
@@ -97,8 +98,8 @@
                 /**/
                 //NSLog(@"%@", self.curUser.currentBar);
                 [user setObject:bar.barName forKey:@"CurrentBar"];
-                self.curUser.currentBar = user[@"CurrentBar"];
-                self.curUser.userBarActivity = user[@"BarActivity"];
+                //self.curUser.currentBar = user[@"CurrentBar"];
+                //self.curUser.userBarActivity = user[@"BarActivity"];
                 /*
                 NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
                 [dateformate setDateFormat:@"EEEE, dd MMMM yyyy hh:mm a"];
@@ -114,7 +115,7 @@
                 [user addUniqueObject:@[bar.barName, date_String] forKey:@"BarActivity"];
                 [user saveInBackground];
                 self.curUser.currentBar = user[@"CurrentBar"];
-                 self.curUser.userBarActivity =[[user[@"BarActivity"] reverseObjectEnumerator] allObjects];
+                self.curUser.userBarActivity =[[user[@"BarActivity"] reverseObjectEnumerator] allObjects];
                 
             }
             
@@ -229,8 +230,11 @@
     self.barNameLabel.text = bar.barName;
     self.barPhoneLabel.text = [NSString stringWithFormat:@"%@", bar.barPhone];
     self.barHoursLabel.text = [NSString stringWithFormat:@"%@", bar.barHours];
-    self.NumberOfPeopleCheckedInLabel.text = [NSString stringWithFormat:@"%@" , bar.NumberCheckedIn];
-    NSLog(@"%@", bar.NumberCheckedIn);
+    PFQuery *numCheckedIn = [PFQuery queryWithClassName:@"Bars"];
+    [numCheckedIn getObjectInBackgroundWithId:bar.barID block:^(PFObject *object, NSError *error) {
+        self.NumberOfPeopleCheckedInLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"Number_Checked_in"]];
+        NSLog(@"favorites page %@", bar.NumberCheckedIn);
+    }];
     NSInteger amount = 0;
     NSInteger position = 0;
     for (PFObject *item in self.curUser.usersInfo){

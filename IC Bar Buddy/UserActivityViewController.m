@@ -86,9 +86,11 @@
 - (void)LoadWindow{
     if ([self.curUser.currentBar isEqualToString: @"NA"]){
         self.CurrentBarLablel.text = @"Checked-in nowhere";
+        NSLog(@"%@", self.curUser.currentBar);
     }
     else{
         self.CurrentBarLablel.text= [NSString stringWithFormat:@"Checked-in @ %@", self.curUser.currentBar];
+        NSLog(@"%@", self.curUser.currentBar);
     }
 
 }

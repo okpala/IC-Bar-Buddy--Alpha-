@@ -69,12 +69,13 @@
     // Add the button to the view
     [self.view addSubview:loginView];
     
+    /*
     UIImage *img = [UIImage imageNamed:@"homePic"];
     UIImageView *imgView = [[UIImageView alloc]initWithImage:img];
     imgView.frame =  CGRectMake(0, self.view.frame.size.height - 128 , 320, 128);
     
     [self.view addSubview:imgView];
-    
+    */
     
     
 }
