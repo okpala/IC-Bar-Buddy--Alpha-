@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4826D57818E37B0800C3469A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4826D57718E37B0800C3469A /* Foundation.framework */; };
+		4826D57A18E37B0800C3469A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4826D57918E37B0800C3469A /* CoreGraphics.framework */; };
+		4826D57C18E37B0800C3469A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4826D57B18E37B0800C3469A /* UIKit.framework */; };
+		4826D58218E37B0800C3469A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4826D58018E37B0800C3469A /* InfoPlist.strings */; };
+		4826D58418E37B0800C3469A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D58318E37B0800C3469A /* main.m */; };
+		4826D58818E37B0800C3469A /* ICBarsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D58718E37B0800C3469A /* ICBarsAppDelegate.m */; };
+		4826D59018E37B0800C3469A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4826D58F18E37B0800C3469A /* Images.xcassets */; };
+		4826D59718E37B0800C3469A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4826D59618E37B0800C3469A /* XCTest.framework */; };
+		4826D59818E37B0900C3469A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4826D57718E37B0800C3469A /* Foundation.framework */; };
+		4826D59918E37B0900C3469A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4826D57B18E37B0800C3469A /* UIKit.framework */; };
+		4826D5A118E37B0900C3469A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4826D59F18E37B0900C3469A /* InfoPlist.strings */; };
+		4826D5A318E37B0900C3469A /* IC_Bar_BuddyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D5A218E37B0900C3469A /* IC_Bar_BuddyTests.m */; };
+		4826D5AE18E395B500C3469A /* BarsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D5AD18E395B500C3469A /* BarsListViewController.m */; };
+		4826D5B118E397C700C3469A /* FavoriteBarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D5B018E397C700C3469A /* FavoriteBarsViewController.m */; };
+		4826D5B418E3992900C3469A /* UserActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D5B318E3992900C3469A /* UserActivityViewController.m */; };
+		4826D5B718E3999900C3469A /* FriendsActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D5B618E3999900C3469A /* FriendsActivityViewController.m */; };
+		4826D5C018E39BA200C3469A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826D5BF18E39BA200C3469A /* SettingViewController.m */; };
+		483C65AA18FC1B16007AD903 /* FriendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483C65A918FC1B16007AD903 /* FriendInfoViewController.m */; };
+		483C65AD18FC1CAF007AD903 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 483C65AC18FC1CAF007AD903 /* Friend.m */; };
+		48FE128D18ED0F6900B7DDFF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FE128C18ED0F6900B7DDFF /* LoginViewController.m */; };
+		48FE13D018ED10F300B7DDFF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FE13CF18ED10F300B7DDFF /* FacebookSDK.framework */; };
+		48FE13D318ED1A7200B7DDFF /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FE13D218ED1A7200B7DDFF /* CurrentUser.m */; };
+		8402B13918F4459000DA2ACA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8402B13818F4459000DA2ACA /* Main.storyboard */; };
+		8402B13B18F44EF900DA2ACA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8402B13A18F44EF900DA2ACA /* Parse.framework */; };
+		8447D97F18F52A270001823E /* BarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447D97E18F52A270001823E /* BarInfoViewController.m */; };
+		8447D98218F52FAF0001823E /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8447D98118F52FAF0001823E /* Bar.m */; };
+		846F519E18F342B300B37258 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F519D18F342B300B37258 /* AudioToolbox.framework */; };
+		846F51A018F342B800B37258 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F519F18F342B800B37258 /* CFNetwork.framework */; };
+		846F51A218F342C600B37258 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F51A118F342C600B37258 /* CoreLocation.framework */; };
+		846F51A418F342D600B37258 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F51A318F342D600B37258 /* libz.dylib */; };
+		846F51A618F342DF00B37258 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F51A518F342DF00B37258 /* MobileCoreServices.framework */; };
+		846F51A818F342E800B37258 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F51A718F342E800B37258 /* QuartzCore.framework */; };
+		846F51AA18F342EF00B37258 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F51A918F342EF00B37258 /* Security.framework */; };
+		846F51AC18F342F600B37258 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F51AB18F342F600B37258 /* StoreKit.framework */; };
+		846F51AE18F3430000B37258 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846F51AD18F342FF00B37258 /* SystemConfiguration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4826D59A18E37B0900C3469A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4826D56C18E37B0800C3469A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4826D57318E37B0800C3469A;
+			remoteInfo = "IC Bar Buddy";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4826D57418E37B0800C3469A /* IC Bar Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IC Bar Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4826D57718E37B0800C3469A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4826D57918E37B0800C3469A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4826D57B18E37B0800C3469A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4826D57F18E37B0800C3469A /* IC Bar Buddy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IC Bar Buddy-Info.plist"; sourceTree = "<group>"; };
+		4826D58118E37B0800C3469A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4826D58318E37B0800C3469A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4826D58518E37B0800C3469A /* IC Bar Buddy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IC Bar Buddy-Prefix.pch"; sourceTree = "<group>"; };
+		4826D58618E37B0800C3469A /* ICBarsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ICBarsAppDelegate.h; sourceTree = "<group>"; };
+		4826D58718E37B0800C3469A /* ICBarsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICBarsAppDelegate.m; sourceTree = "<group>"; };
+		4826D58F18E37B0800C3469A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4826D59518E37B0800C3469A /* IC Bar BuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IC Bar BuddyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4826D59618E37B0800C3469A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4826D59E18E37B0900C3469A /* IC Bar BuddyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IC Bar BuddyTests-Info.plist"; sourceTree = "<group>"; };
+		4826D5A018E37B0900C3469A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4826D5A218E37B0900C3469A /* IC_Bar_BuddyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IC_Bar_BuddyTests.m; sourceTree = "<group>"; };
+		4826D5AC18E395B500C3469A /* BarsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarsListViewController.h; sourceTree = "<group>"; };
+		4826D5AD18E395B500C3469A /* BarsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarsListViewController.m; sourceTree = "<group>"; };
+		4826D5AF18E397C700C3469A /* FavoriteBarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteBarsViewController.h; sourceTree = "<group>"; };
+		4826D5B018E397C700C3469A /* FavoriteBarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteBarsViewController.m; sourceTree = "<group>"; };
+		4826D5B218E3992900C3469A /* UserActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserActivityViewController.h; sourceTree = "<group>"; };
+		4826D5B318E3992900C3469A /* UserActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserActivityViewController.m; sourceTree = "<group>"; };
+		4826D5B518E3999900C3469A /* FriendsActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsActivityViewController.h; sourceTree = "<group>"; };
+		4826D5B618E3999900C3469A /* FriendsActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsActivityViewController.m; sourceTree = "<group>"; };
+		4826D5BE18E39BA200C3469A /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		4826D5BF18E39BA200C3469A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		483C65A818FC1B16007AD903 /* FriendInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendInfoViewController.h; sourceTree = "<group>"; };
+		483C65A918FC1B16007AD903 /* FriendInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendInfoViewController.m; sourceTree = "<group>"; };
+		483C65AB18FC1CAF007AD903 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		483C65AC18FC1CAF007AD903 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		48FE128B18ED0F6900B7DDFF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		48FE128C18ED0F6900B7DDFF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		48FE13CF18ED10F300B7DDFF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		48FE13D118ED1A6600B7DDFF /* CurrentUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
+		48FE13D218ED1A7200B7DDFF /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		8402B13818F4459000DA2ACA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8402B13A18F44EF900DA2ACA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		8447D97D18F52A270001823E /* BarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarInfoViewController.h; sourceTree = "<group>"; };
+		8447D97E18F52A270001823E /* BarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarInfoViewController.m; sourceTree = "<group>"; };
+		8447D98018F52FAF0001823E /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bar.h; sourceTree = "<group>"; };
+		8447D98118F52FAF0001823E /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bar.m; sourceTree = "<group>"; };
+		846F519D18F342B300B37258 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		846F519F18F342B800B37258 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		846F51A118F342C600B37258 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		846F51A318F342D600B37258 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		846F51A518F342DF00B37258 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		846F51A718F342E800B37258 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		846F51A918F342EF00B37258 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		846F51AB18F342F600B37258 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		846F51AD18F342FF00B37258 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4826D57118E37B0800C3469A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				846F51AE18F3430000B37258 /* SystemConfiguration.framework in Frameworks */,
+				846F51AC18F342F600B37258 /* StoreKit.framework in Frameworks */,
+				846F51AA18F342EF00B37258 /* Security.framework in Frameworks */,
+				846F51A818F342E800B37258 /* QuartzCore.framework in Frameworks */,
+				846F51A618F342DF00B37258 /* MobileCoreServices.framework in Frameworks */,
+				846F51A418F342D600B37258 /* libz.dylib in Frameworks */,
+				846F51A218F342C600B37258 /* CoreLocation.framework in Frameworks */,
+				4826D57A18E37B0800C3469A /* CoreGraphics.framework in Frameworks */,
+				846F51A018F342B800B37258 /* CFNetwork.framework in Frameworks */,
+				846F519E18F342B300B37258 /* AudioToolbox.framework in Frameworks */,
+				8402B13B18F44EF900DA2ACA /* Parse.framework in Frameworks */,
+				48FE13D018ED10F300B7DDFF /* FacebookSDK.framework in Frameworks */,
+				4826D57C18E37B0800C3469A /* UIKit.framework in Frameworks */,
+				4826D57818E37B0800C3469A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4826D59218E37B0800C3469A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4826D59718E37B0800C3469A /* XCTest.framework in Frameworks */,
+				4826D59918E37B0900C3469A /* UIKit.framework in Frameworks */,
+				4826D59818E37B0900C3469A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4826D56B18E37B0800C3469A = {
+			isa = PBXGroup;
+			children = (
+				4826D57D18E37B0800C3469A /* IC Bar Buddy */,
+				4826D59C18E37B0900C3469A /* IC Bar BuddyTests */,
+				4826D57618E37B0800C3469A /* Frameworks */,
+				4826D57518E37B0800C3469A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4826D57518E37B0800C3469A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4826D57418E37B0800C3469A /* IC Bar Buddy.app */,
+				4826D59518E37B0800C3469A /* IC Bar BuddyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4826D57618E37B0800C3469A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8402B13A18F44EF900DA2ACA /* Parse.framework */,
+				846F51AD18F342FF00B37258 /* SystemConfiguration.framework */,
+				846F51AB18F342F600B37258 /* StoreKit.framework */,
+				846F51A918F342EF00B37258 /* Security.framework */,
+				846F51A718F342E800B37258 /* QuartzCore.framework */,
+				846F51A518F342DF00B37258 /* MobileCoreServices.framework */,
+				846F51A318F342D600B37258 /* libz.dylib */,
+				846F51A118F342C600B37258 /* CoreLocation.framework */,
+				846F519F18F342B800B37258 /* CFNetwork.framework */,
+				846F519D18F342B300B37258 /* AudioToolbox.framework */,
+				48FE13CF18ED10F300B7DDFF /* FacebookSDK.framework */,
+				4826D57718E37B0800C3469A /* Foundation.framework */,
+				4826D57918E37B0800C3469A /* CoreGraphics.framework */,
+				4826D57B18E37B0800C3469A /* UIKit.framework */,
+				4826D59618E37B0800C3469A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4826D57D18E37B0800C3469A /* IC Bar Buddy */ = {
+			isa = PBXGroup;
+			children = (
+				48FE13D118ED1A6600B7DDFF /* CurrentUser.h */,
+				48FE13D218ED1A7200B7DDFF /* CurrentUser.m */,
+				8447D98018F52FAF0001823E /* Bar.h */,
+				8447D98118F52FAF0001823E /* Bar.m */,
+				483C65AB18FC1CAF007AD903 /* Friend.h */,
+				483C65AC18FC1CAF007AD903 /* Friend.m */,
+				4826D58618E37B0800C3469A /* ICBarsAppDelegate.h */,
+				4826D58718E37B0800C3469A /* ICBarsAppDelegate.m */,
+				8402B13818F4459000DA2ACA /* Main.storyboard */,
+				8447D97D18F52A270001823E /* BarInfoViewController.h */,
+				8447D97E18F52A270001823E /* BarInfoViewController.m */,
+				4826D5B518E3999900C3469A /* FriendsActivityViewController.h */,
+				4826D5B618E3999900C3469A /* FriendsActivityViewController.m */,
+				483C65A818FC1B16007AD903 /* FriendInfoViewController.h */,
+				483C65A918FC1B16007AD903 /* FriendInfoViewController.m */,
+				4826D5B218E3992900C3469A /* UserActivityViewController.h */,
+				4826D5B318E3992900C3469A /* UserActivityViewController.m */,
+				4826D5BE18E39BA200C3469A /* SettingViewController.h */,
+				4826D5BF18E39BA200C3469A /* SettingViewController.m */,
+				4826D5AF18E397C700C3469A /* FavoriteBarsViewController.h */,
+				4826D5B018E397C700C3469A /* FavoriteBarsViewController.m */,
+				4826D5AC18E395B500C3469A /* BarsListViewController.h */,
+				4826D5AD18E395B500C3469A /* BarsListViewController.m */,
+				48FE128B18ED0F6900B7DDFF /* LoginViewController.h */,
+				48FE128C18ED0F6900B7DDFF /* LoginViewController.m */,
+				4826D58F18E37B0800C3469A /* Images.xcassets */,
+				4826D57E18E37B0800C3469A /* Supporting Files */,
+			);
+			path = "IC Bar Buddy";
+			sourceTree = "<group>";
+		};
+		4826D57E18E37B0800C3469A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4826D57F18E37B0800C3469A /* IC Bar Buddy-Info.plist */,
+				4826D58018E37B0800C3469A /* InfoPlist.strings */,
+				4826D58318E37B0800C3469A /* main.m */,
+				4826D58518E37B0800C3469A /* IC Bar Buddy-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4826D59C18E37B0900C3469A /* IC Bar BuddyTests */ = {
+			isa = PBXGroup;
+			children = (
+				4826D5A218E37B0900C3469A /* IC_Bar_BuddyTests.m */,
+				4826D59D18E37B0900C3469A /* Supporting Files */,
+			);
+			path = "IC Bar BuddyTests";
+			sourceTree = "<group>";
+		};
+		4826D59D18E37B0900C3469A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4826D59E18E37B0900C3469A /* IC Bar BuddyTests-Info.plist */,
+				4826D59F18E37B0900C3469A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4826D57318E37B0800C3469A /* IC Bar Buddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4826D5A618E37B0900C3469A /* Build configuration list for PBXNativeTarget "IC Bar Buddy" */;
+			buildPhases = (
+				4826D57018E37B0800C3469A /* Sources */,
+				4826D57118E37B0800C3469A /* Frameworks */,
+				4826D57218E37B0800C3469A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "IC Bar Buddy";
+			productName = "IC Bar Buddy";
+			productReference = 4826D57418E37B0800C3469A /* IC Bar Buddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4826D59418E37B0800C3469A /* IC Bar BuddyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4826D5A918E37B0900C3469A /* Build configuration list for PBXNativeTarget "IC Bar BuddyTests" */;
+			buildPhases = (
+				4826D59118E37B0800C3469A /* Sources */,
+				4826D59218E37B0800C3469A /* Frameworks */,
+				4826D59318E37B0800C3469A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4826D59B18E37B0900C3469A /* PBXTargetDependency */,
+			);
+			name = "IC Bar BuddyTests";
+			productName = "IC Bar BuddyTests";
+			productReference = 4826D59518E37B0800C3469A /* IC Bar BuddyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4826D56C18E37B0800C3469A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ICBars;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Charles Okpala";
+				TargetAttributes = {
+					4826D57318E37B0800C3469A = {
+						DevelopmentTeam = 625732G463;
+					};
+					4826D59418E37B0800C3469A = {
+						TestTargetID = 4826D57318E37B0800C3469A;
+					};
+				};
+			};
+			buildConfigurationList = 4826D56F18E37B0800C3469A /* Build configuration list for PBXProject "IC Bar Buddy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				he,
+			);
+			mainGroup = 4826D56B18E37B0800C3469A;
+			productRefGroup = 4826D57518E37B0800C3469A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4826D57318E37B0800C3469A /* IC Bar Buddy */,
+				4826D59418E37B0800C3469A /* IC Bar BuddyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4826D57218E37B0800C3469A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4826D59018E37B0800C3469A /* Images.xcassets in Resources */,
+				4826D58218E37B0800C3469A /* InfoPlist.strings in Resources */,
+				8402B13918F4459000DA2ACA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4826D59318E37B0800C3469A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4826D5A118E37B0900C3469A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4826D57018E37B0800C3469A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				483C65AA18FC1B16007AD903 /* FriendInfoViewController.m in Sources */,
+				483C65AD18FC1CAF007AD903 /* Friend.m in Sources */,
+				8447D98218F52FAF0001823E /* Bar.m in Sources */,
+				48FE128D18ED0F6900B7DDFF /* LoginViewController.m in Sources */,
+				4826D5B418E3992900C3469A /* UserActivityViewController.m in Sources */,
+				8447D97F18F52A270001823E /* BarInfoViewController.m in Sources */,
+				4826D5B718E3999900C3469A /* FriendsActivityViewController.m in Sources */,
+				48FE13D318ED1A7200B7DDFF /* CurrentUser.m in Sources */,
+				4826D58818E37B0800C3469A /* ICBarsAppDelegate.m in Sources */,
+				4826D5C018E39BA200C3469A /* SettingViewController.m in Sources */,
+				4826D5AE18E395B500C3469A /* BarsListViewController.m in Sources */,
+				4826D58418E37B0800C3469A /* main.m in Sources */,
+				4826D5B118E397C700C3469A /* FavoriteBarsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4826D59118E37B0800C3469A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4826D5A318E37B0900C3469A /* IC_Bar_BuddyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4826D59B18E37B0900C3469A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4826D57318E37B0800C3469A /* IC Bar Buddy */;
+			targetProxy = 4826D59A18E37B0900C3469A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4826D58018E37B0800C3469A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4826D58118E37B0800C3469A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4826D59F18E37B0900C3469A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4826D5A018E37B0900C3469A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4826D5A418E37B0900C3469A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4826D5A518E37B0900C3469A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4826D5A718E37B0900C3469A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IC Bar Buddy/IC Bar Buddy-Prefix.pch";
+				INFOPLIST_FILE = "IC Bar Buddy/IC Bar Buddy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4826D5A818E37B0900C3469A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IC Bar Buddy/IC Bar Buddy-Prefix.pch";
+				INFOPLIST_FILE = "IC Bar Buddy/IC Bar Buddy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		4826D5AA18E37B0900C3469A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IC Bar Buddy.app/IC Bar Buddy";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IC Bar Buddy/IC Bar Buddy-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "IC Bar BuddyTests/IC Bar BuddyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		4826D5AB18E37B0900C3469A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IC Bar Buddy.app/IC Bar Buddy";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IC Bar Buddy/IC Bar Buddy-Prefix.pch";
+				INFOPLIST_FILE = "IC Bar BuddyTests/IC Bar BuddyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4826D56F18E37B0800C3469A /* Build configuration list for PBXProject "IC Bar Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4826D5A418E37B0900C3469A /* Debug */,
+				4826D5A518E37B0900C3469A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4826D5A618E37B0900C3469A /* Build configuration list for PBXNativeTarget "IC Bar Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4826D5A718E37B0900C3469A /* Debug */,
+				4826D5A818E37B0900C3469A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4826D5A918E37B0900C3469A /* Build configuration list for PBXNativeTarget "IC Bar BuddyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4826D5AA18E37B0900C3469A /* Debug */,
+				4826D5AB18E37B0900C3469A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4826D56C18E37B0800C3469A /* Project object */;
+}
