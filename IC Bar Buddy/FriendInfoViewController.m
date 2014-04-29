@@ -78,10 +78,10 @@
     [self.tableView reloadData];
     
     if ([self.curUser.selectedFriendBar isEqualToString: @"NA"] || self.curUser.selectedFriendBar == NULL){
-        self.currentBar.text = @"Checked-in nowhere";
+        self.currentBar.text = @"Currently not checked-in";
     }
     else{
-        self.currentBar.text= [NSString stringWithFormat:@"Checked-in @ %@", self.curUser.selectedFriendBar];
+        self.currentBar.text= [NSString stringWithFormat:@"Currently @ %@", self.curUser.selectedFriendBar];
     }
     //NSLog(@"red");
 }

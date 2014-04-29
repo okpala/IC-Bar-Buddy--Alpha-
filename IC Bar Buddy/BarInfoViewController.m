@@ -216,13 +216,13 @@
     // Do any additional setup after loading the view.
     
     self.barAddressLabel.text = [NSString stringWithFormat:@"%@", bar.barAddress];
-    self.barNameLabel.text = bar.barName;
+    self.barNameLabel.text = [NSString stringWithFormat:@"%@ ", bar.barName];
     self.barPhoneLabel.text = [NSString stringWithFormat:@"%@", bar.barPhone];
     self.barHoursLabel.text = [NSString stringWithFormat:@"%@", bar.barHours];
     PFQuery *numCheckedIn = [PFQuery queryWithClassName:@"Bars"];
     [numCheckedIn getObjectInBackgroundWithId:bar.barID block:^(PFObject *object, NSError *error) {
         self.NumberOfPeopleCheckedInLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"Number_Checked_in"]];
-        NSLog(@"favorites page %@", bar.NumberCheckedIn);
+        //NSLog(@"favorites page %@", bar.NumberCheckedIn);
     }];
     NSInteger amount = 0;
     NSInteger position = 0;
@@ -235,7 +235,7 @@
         if(matchingObjs.count > 0 && [item[@"CurrentBar"] isEqualToString:bar.barName]){
             amount++;
             if (position < 220){
-                UIImageView *imageHolder = [[UIImageView alloc] initWithFrame:CGRectMake(position, 0, 25, 25)];
+                UIImageView *imageHolder = [[UIImageView alloc] initWithFrame:CGRectMake(position, 0, 40, 40)];
                  //NSLog(@"%@ -", [matchingObjs objectAtIndex:0]);
                 UIImage *image = [UIImage imageWithData:
                                   [NSData dataWithContentsOfURL:
@@ -243,7 +243,7 @@
                                     item[@"FacebookPicture"]]]];
                 imageHolder.image = image;
                 [self.friendsView addSubview:imageHolder];
-                position = position + 30;
+                position = position + 45;
                 NSLog(@"was here");
             }
         }

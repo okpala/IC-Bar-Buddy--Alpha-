@@ -62,7 +62,7 @@
         //[self.tableView setHidden:YES];
         
         UILabel *label =  [[UILabel alloc] initWithFrame: CGRectMake(20, 0, 300, 20)];
-        label.text = @"None of your Facebook Friends has this app Installed.";
+        label.text = @"None of your Facebook Friends have this app Installed.";
         //label.lineBreakMode = NSLineBreakByWordWrapping;
         label.numberOfLines = 2;
         [label sizeToFit];
@@ -109,7 +109,7 @@
         if ([friend[@"uid"] isEqualToString: item[@"FacebookID"]]){
             if ([item[@"CurrentBar"] isEqualToString: @"NA"]){
                 UILabel *textLabel = (UILabel*) [cell viewWithTag:102];
-                textLabel.text = @"- Checked-in nowhere";
+                textLabel.text = @"- Currently not checked-in";
                 
                 UILabel *barNameLabel = (UILabel*) [cell viewWithTag:101];
                 barNameLabel.text = @"";
@@ -117,7 +117,7 @@
             else{
                 //cell.detailTextLabel.text = [NSString stringWithFormat:@"Checked-in @ %@", item[@"CurrentBar"]];
                 UILabel *textLabel = (UILabel*) [cell viewWithTag:102];
-                textLabel.text = @"- Checked-in @";
+                textLabel.text = @"- Currently @";
                 
                 UILabel *barNameLabel = (UILabel*) [cell viewWithTag:101];
                 barNameLabel.text = [NSString stringWithFormat:@"%@", item[@"CurrentBar"]];
