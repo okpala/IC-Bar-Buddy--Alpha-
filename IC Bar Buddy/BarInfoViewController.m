@@ -89,7 +89,13 @@
                         // Do something with the returned PFObject in the gameScore variable.
                         //NSLog(@"%@", curBar);
                         int amount = [[curBar objectForKey:@"Number_Checked_in"] intValue] - 1;
-                        [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
+                        if ( amount < 0){
+                           [curBar setObject:@1 forKey:@"Number_Checked_in"];
+                        }
+                        else{
+                            [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
+                        }
+                        
                         [curBar saveInBackground];
                       
                         

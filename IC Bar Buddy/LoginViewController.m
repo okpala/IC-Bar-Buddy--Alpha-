@@ -59,12 +59,10 @@
     loginView.delegate = self;
     
     // Align the button in the center horizontally
-    loginView.frame = CGRectOffset(loginView.frame,
-                                   (self.view.center.x - (loginView.frame.size.width / 2)),
-                                   5);
-    
+    loginView.frame = CGRectOffset(loginView.frame,(self.view.center.x - (loginView.frame.size.width / 2)),270  );
+    NSLog(@"%f",self.enterAppButton.bounds.origin.y );
     // Align the button in the center vertically
-    loginView.center = self.view.center;
+    //loginView.center = self.view.center;
     
     // Add the button to the view
     [self.view addSubview:loginView];
@@ -106,6 +104,7 @@
         usersDatabase[@"FacebookID"] = user.id;
         usersDatabase[@"Name"] = user.name;
         usersDatabase[@"CurrentBar"] = @"NA";
+        usersDatabase[@"TimeCheckedIn"] = @"NA";
         [usersDatabase saveInBackground];
         //self.curUser.userDatabaseID = [usersDatabase objectId];
         
