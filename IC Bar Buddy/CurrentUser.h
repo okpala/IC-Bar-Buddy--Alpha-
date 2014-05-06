@@ -18,6 +18,7 @@
 @property (strong, nonatomic)  NSArray *userFriends;
 @property (strong, nonatomic)  NSArray *selectedFriend;
 @property (strong, nonatomic)  NSString *selectedFriendBar;
+@property (strong, nonatomic)  NSNumber *selectedFriendNumber;
 @property (strong, nonatomic) NSArray *usersInfo;
 @property (strong, nonatomic) NSArray *userBarActivity;
 @property (strong, nonatomic)  NSNumber *IsUserInABar;

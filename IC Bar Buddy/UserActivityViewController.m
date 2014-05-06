@@ -12,6 +12,7 @@
 @interface UserActivityViewController ()
 @property (strong, nonatomic) CurrentUser *curUser;
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
+@property (strong, nonatomic) UILabel *label;
 @end
 
 @implementation UserActivityViewController
@@ -61,38 +62,67 @@
     return cell;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.tableView.dataSource = self;
     self.userLabel.text = self.curUser.user;
     self.profilePictureView.profileID = self.curUser.profilePictureView;
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
+    [self.label setCenter:self.tableView.center];
+    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:36]];
     if ([self.curUser.userBarActivity count] == 0){
-        //[self.tableView setHidden:YES];
-        
-        UILabel *label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
-        label.text = @"You have no previous activity";
-        [label setCenter:self.tableView.center];
-        [self.view addSubview:label];
-        
+        self.label.text = @"You have no previous activity";
     }
+    else{
+        self.label.text = @"";
+    }
+    [self.view addSubview:self.label];
+    
+    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+                                   selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
     
     [self LoadWindow];
   
 }
 - (void)LoadWindow{
+    
     if ([self.curUser.currentBar isEqualToString: @"NA"]){
         self.CurrentBarLablel.text = @"Currently not checked-in";
-        NSLog(@"%@", self.curUser.currentBar);
+        //NSLog(@"%@", self.curUser.currentBar);
     }
     else{
+        
         self.CurrentBarLablel.text= [NSString stringWithFormat:@"Currently @ %@", self.curUser.currentBar];
-        NSLog(@"%@", self.curUser.currentBar);
+        //NSLog(@"%@", self.curUser.currentBar);
     }
 
+}
+
+-(void) callAfterTenSeconds:(NSTimer*)t
+{
+    PFQuery *queryUserActivity = [PFQuery queryWithClassName:@"Users"];
+    [queryUserActivity whereKey:@"FacebookID" equalTo:self.curUser.profilePictureView];
+    [queryUserActivity findObjectsInBackgroundWithBlock:^(NSArray *user, NSError *error) {
+        self.curUser.userBarActivity =[[[user objectAtIndex:0][@"BarActivity"] reverseObjectEnumerator] allObjects];
+        self.curUser.currentBar = [user objectAtIndex:0][@"CurrentBar"];
+        //NSLog(@"%@", self.curUser.currentBar);
+        [self LoadWindow];
+    }];
+    
+    if ([self.curUser.userBarActivity count] == 0){
+        self.label.text = @"You have no previous activity";
+    }
+    else{
+        self.label.text = @"";
+    }
+
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

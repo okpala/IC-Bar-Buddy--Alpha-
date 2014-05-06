@@ -38,7 +38,7 @@
         PFQuery *query = [PFQuery queryWithClassName:@"Bars"];
         [query getObjectInBackgroundWithId:bar.barID block:^(PFObject *curBar, NSError *error) {
             // Do something with the returned PFObject in the gameScore variable.
-            NSLog(@"%@", curBar);
+            //NSLog(@"%@", curBar);
             int amount = [[curBar objectForKey:@"Number_Checked_in"] intValue] + 1;
             [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
             [curBar saveInBackground];
@@ -116,7 +116,7 @@
                 [formatter setDateStyle:NSDateFormatterLongStyle];
                 [formatter setTimeStyle:NSDateFormatterLongStyle];
                 
-                NSLog(@"%@", [formatter stringFromDate:[NSDate date]]);
+               // NSLog(@"%@", [formatter stringFromDate:[NSDate date]]);
                 NSString *date_String = [formatter stringFromDate:[NSDate date]];
                 [user addUniqueObject:@[bar.barName, date_String] forKey:@"BarActivity"];
                 [user saveInBackground];
@@ -268,7 +268,24 @@
         //redish color
         [self.addToFavorites setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
     }
+    /*
+    NSLog(@"2nd - %@", bar.barImage);
+    if([bar.barImage isEqualToString:@""]){
+        NSURL *imageURL = [NSURL URLWithString:bar.barImage];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        [self.BarImage  setImage: [UIImage imageWithData:imageData]];
+    }
     
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Bars"];
+    [query getObjectInBackgroundWithId:bar.barID block:^(PFObject *curBar, NSError *error) {
+        
+        bar.barImage = [NSString stringWithFormat:@"%@" , curBar[@"imageFile"]];
+        [self.BarImage setImage: [UIImage imageWithData:curBar[@"imageFile"]]];
+        NSLog(@"1st %@", bar.barImage);
+    }];
+    */
+
 }
 
 

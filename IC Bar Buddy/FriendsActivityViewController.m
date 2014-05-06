@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) CurrentUser *curUser;
 @property (strong, nonatomic) Friend *selectedFriend;
+@property (strong, nonatomic) UILabel *label;
 
 @end
 
@@ -47,29 +48,66 @@
     }
     return self;
 }
+-(void) callAfterTenSeconds:(NSTimer*)t
+{
+    NSString *query = [NSString stringWithFormat:@"SELECT name,uid, pic_small, pic_square FROM user WHERE is_app_user = 1 AND uid IN (SELECT uid2 FROM friend WHERE uid1 = %@) order by concat(first_name,last_name) asc", self.curUser.profilePictureView];
+    // Set up the query parameter
+    NSDictionary *queryParam = @{ @"q": query };
+    // Make the API request that uses FQL
+    [FBRequestConnection startWithGraphPath:@"/fql"
+                                 parameters:queryParam
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+                              if (error) {
+                                  NSLog(@"Error: %@", [error localizedDescription]);
+                              } else {
+                                  //NSLog(@"Result: %@", result);
+                                  // Get the friend data to display
+                                  self.curUser.userFriends = (NSArray *) result[@"data"];
+                                  
+                              }
+                          }];
+    
+    if (self.curUser.userFriends.count == 0){
+        self.label.text = @"None of your Facebook Friends have this app Installed.";
+    }
+    else{
+        self.label.text = @"";
+    }
 
-
+    [self.tableView reloadData];
+}
 
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
+    
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
+    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
+
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(20, 0, 300, 20)];
+     [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:36]];
+    self.label.numberOfLines = 2;
+    [self.label sizeToFit];
+    [self.label setCenter:self.tableView.center];
     if (self.curUser.userFriends.count == 0){
-        //[self.tableView setHidden:YES];
-        
-        UILabel *label =  [[UILabel alloc] initWithFrame: CGRectMake(20, 0, 300, 20)];
-        label.text = @"None of your Facebook Friends have this app Installed.";
-        //label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.numberOfLines = 2;
-        [label sizeToFit];
-        //[label setCenter:self.tableView.center];
-        [self.tableView addSubview:label];
-        
+        self.label.text = @"None of your Facebook Friends have this app Installed.";
     }
+    else{
+       self.label.text = @"";
+    }
+    [self.tableView addSubview:self.label];
     
     
 }
@@ -148,6 +186,7 @@
     if ([segue.identifier isEqualToString:@"showFriendInfo"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDictionary<FBGraphUser>* friend = [self.curUser.userFriends objectAtIndex:indexPath.row];
+        self.curUser.selectedFriendNumber = [NSNumber numberWithInt:indexPath.row ];
         self.selectedFriend.profilePictureView = friend[@"pic_square"] ;
         self.selectedFriend.user = friend.name;
         PFQuery *query2 = [PFQuery queryWithClassName:@"Users"];

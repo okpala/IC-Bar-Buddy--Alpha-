@@ -53,22 +53,28 @@
 }
 
 #pragma mark - View lifecycle
+-(void) callAfterTenSeconds:(NSTimer*)t
+{
+    [self loadObjects];
+    
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+                                   selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //NSLog(@"viewDidAppear called");
     [self loadObjects];
+    
     
 }
 
@@ -114,6 +120,7 @@
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
+    
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
     if ([self.objects count] == 0) {
@@ -157,17 +164,18 @@
         
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         Bar *bar = [[Bar alloc] init];
+        bar.barID = [object objectId];
+       
         bar.barName = [object objectForKey:@"Name"];
         bar.barHours = [object objectForKey:@"Hours"];
         bar.barPhone = [object objectForKey:@"Phone"];
         bar.barAddress = [object objectForKey:@"Address"];
-        bar.barID = [object objectId];
+        
         bar.NumberCheckedIn = [object objectForKey:@"Number_Checked_in"];
         //bar.barObject = self.objects;
         //NSLog(@"barID - %@", bar.barID);
         destViewController.bar = bar;
-        
-        
+               
 
         
     }

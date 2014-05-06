@@ -83,13 +83,25 @@
     else{
         self.currentBar.text= [NSString stringWithFormat:@"Currently @ %@", self.curUser.selectedFriendBar];
     }
-    //NSLog(@"red");
+    
+    NSDictionary<FBGraphUser>* friend = [self.curUser.userFriends objectAtIndex:[self.curUser.selectedFriendNumber integerValue]];
+    self.selectedFriend.profilePictureView = friend[@"pic_square"] ;
+    self.selectedFriend.user = friend.name;
+    PFQuery *query2 = [PFQuery queryWithClassName:@"Users"];
+    [query2  whereKey:@"FacebookID" equalTo:friend[@"uid"]];
+    
+    [query2 findObjectsInBackgroundWithBlock:^(NSArray  *user, NSError *error) {
+        self.curUser.selectedFriendBar = [user objectAtIndex:0][@"CurrentBar"];
+        self.curUser.selectedFriend = [[[user objectAtIndex:0][@"BarActivity"] reverseObjectEnumerator] allObjects] ;
+        
+        
+    }];
+    
 }
 
 //BRITTANY DESIGN THIS LABEL
 - (void)displayLabel{
     if ([self.curUser.selectedFriend count] == 0){
-        //[self.tableView setHidden:YES];
         self.label.text = @"There is no pervious activity saved";
         
     }
@@ -97,9 +109,12 @@
         self.label.text = @"";
     }
 }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
                                    selector: @selector(callAfterASecond:) userInfo: nil repeats: YES];

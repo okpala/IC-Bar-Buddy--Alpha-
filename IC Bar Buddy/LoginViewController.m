@@ -15,7 +15,8 @@
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
-
+@property (strong, nonatomic) NSString *userID;
+@property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) CurrentUser *curUser;
 
 @end
@@ -49,7 +50,7 @@
     // Do any additional setup after loading the view.
     self.enterAppButton.hidden = true;
     // Custom initialization
-    
+   
     // Create a FBLoginView to log the user in with basic, email and likes permissions
     // You should ALWAYS ask for basic permissions (basic_info) when logging the user in
     FBLoginView *loginView = [[FBLoginView alloc] init];
@@ -60,42 +61,71 @@
     
     // Align the button in the center horizontally
     loginView.frame = CGRectOffset(loginView.frame,(self.view.center.x - (loginView.frame.size.width / 2)),270  );
-    NSLog(@"%f",self.enterAppButton.bounds.origin.y );
-    // Align the button in the center vertically
-    //loginView.center = self.view.center;
+    
     
     // Add the button to the view
     [self.view addSubview:loginView];
     
-    /*
-    UIImage *img = [UIImage imageNamed:@"homePic"];
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:img];
-    imgView.frame =  CGRectMake(0, self.view.frame.size.height - 128 , 320, 128);
-    
-    [self.view addSubview:imgView];
+   /*
     */
     
     
 }
 
 
+- (void) myThreadMainMethod: (FBLoginView *)loginView{
+
+    PFQuery *query1 = [PFQuery queryWithClassName:@"Users"];
+    [query1 whereKey:@"FacebookID" equalTo: self.userID];
+    
+    if ([query1 countObjects] == 0){
+        PFObject *usersDatabase = [PFObject objectWithClassName:@"Users"];
+        usersDatabase[@"FacebookID"] = self.userID;
+        usersDatabase[@"Name"] = self.userName;
+        usersDatabase[@"CurrentBar"] = @"NA";
+        usersDatabase[@"TimeCheckedIn"] = @"NA";
+        [usersDatabase saveInBackground];
+        //self.curUser.userDatabaseID = [usersDatabase objectId];
+        
+    }
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Users"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.curUser.usersInfo = objects;
+            for (PFObject *item in objects){
+                if([item[@"FacebookID"] isEqualToString:self.userID]){
+                    self.curUser.userDatabaseID = [item objectId];
+                    self.curUser.currentBar = item[@"CurrentBar"];
+                    self.curUser.favoriteBars = item[@"Favorites"];
+                    self.curUser.userBarActivity = [[item[@"BarActivity"] reverseObjectEnumerator] allObjects];
+                    //NSLog(@"%@", self.curUser.userDatabaseID);
+                    break;
+                }
+            }
+            
+        } else {
+            
+        }
+    }];
+    
+}
 
 
 
 // This method will be called when the user information has been fetched
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
+   
     self.profilePictureView.profileID = user.id;
     self.nameLabel.text = user.name;
     self.enterAppButton.hidden = false;
     self.curUser.user = user.name;
     self.curUser.profilePictureView = user.id;
-    
-   
-    //NSLog(@"loginViewFetchedUserInfo");
-    
-    
-    
+    self.userID = user.id;
+    self.userName = user.name;
+     /*
     PFQuery *query1 = [PFQuery queryWithClassName:@"Users"];
     [query1 whereKey:@"FacebookID" equalTo: user.id];
 
@@ -135,9 +165,12 @@
             //NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-   
+   */
+    NSThread* myThread = [[NSThread alloc] initWithTarget:self
+                                                 selector:@selector(myThreadMainMethod:)
+                                                   object:nil];
+    [myThread start];
 }
-
 // Implement the loginViewShowingLoggedInUser: delegate method to modify your app's UI for a logged-in user experience
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     self.statusLabel.text = @"You're logged in as";

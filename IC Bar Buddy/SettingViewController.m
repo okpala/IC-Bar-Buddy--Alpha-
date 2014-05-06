@@ -24,22 +24,17 @@
     return self;
 }
 - (IBAction)backButtonClicked:(id)sender {
-    [FBSession.activeSession closeAndClearTokenInformation];
-    NSLog(@"logout");
+    FBSession* session = [FBSession activeSession];
+    [session closeAndClearTokenInformation];
+    [session close];
+    [FBSession setActiveSession:nil];
     
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies])
-    {
-        NSString* domainName = [cookie domain];
-        NSRange domainRange = [domainName rangeOfString:@"facebook"];
-        if(domainRange.length > 0)
-        {
-            [storage deleteCookie:cookie];
-        }
+    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray* facebookCookies = [cookies cookiesForURL:[NSURL URLWithString:@"https://facebook.com/"]];
+    
+    for (NSHTTPCookie* cookie in facebookCookies) {
+        [cookies deleteCookie:cookie];
     }
-    
-    
     [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 

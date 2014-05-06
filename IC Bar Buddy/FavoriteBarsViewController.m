@@ -14,7 +14,7 @@
 
 @interface FavoriteBarsViewController ()
 @property (strong, nonatomic) CurrentUser *curUser;
-
+@property (strong, nonatomic) UILabel *label;
 @end
 
 @implementation FavoriteBarsViewController
@@ -58,25 +58,44 @@
 
 #pragma mark - View lifecycle
 
+-(void) callAfterTenSeconds:(NSTimer*)t
+{
+    
+    if ([self.curUser.favoriteBars count] == 0){
+        self.label.text = @"You have no favorite bars saved";
+    }
+    else{
+        self.label.text = @"";
+    }
+
+    [self loadObjects];
+    
+}
+
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
+    [self.label setCenter:self.tableView.center];
+    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:20]];
     if (self.curUser.favoriteBars.count == 0){
-        //[self.tableView setHidden:YES];
-        
-        UILabel *label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
-        label.text = @"You have no favorite bars saved";
-        [label setCenter:self.tableView.center];
-        [self.view addSubview:label];
-        
+        self.label.text = @"You have no favorite bars saved";
     }
+    else{
+        self.label.text = @"";
+    }
+    [self.view addSubview:self.label];
+    
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
+    
+    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+                                   selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+   
 }
 
 - (void)viewDidUnload
@@ -84,6 +103,15 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    if (self.curUser.favoriteBars.count == 0){
+        self.label.text = @"You have no favorite bars saved";
+    }
+    else{
+        self.label.text = @"";
+    }
+    
+    [self loadObjects];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
