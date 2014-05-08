@@ -170,6 +170,7 @@
         bar.barHours = [object objectForKey:@"Hours"];
         bar.barPhone = [object objectForKey:@"Phone"];
         bar.barAddress = [object objectForKey:@"Address"];
+        bar.barImage = [object objectForKey:@"imageFile"];
         
         bar.NumberCheckedIn = [object objectForKey:@"Number_Checked_in"];
         //bar.barObject = self.objects;

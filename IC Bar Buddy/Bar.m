@@ -16,4 +16,5 @@
 @synthesize barPhone;
 @synthesize barID;
 @synthesize NumberCheckedIn;
+@synthesize barImage;
 @end

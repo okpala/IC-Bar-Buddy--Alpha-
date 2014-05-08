@@ -268,8 +268,8 @@
         //redish color
         [self.addToFavorites setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
     }
-    /*
-    NSLog(@"2nd - %@", bar.barImage);
+
+    /*NSLog(@"2nd - %@", bar.barImage);
     if([bar.barImage isEqualToString:@""]){
         NSURL *imageURL = [NSURL URLWithString:bar.barImage];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -283,8 +283,8 @@
         bar.barImage = [NSString stringWithFormat:@"%@" , curBar[@"imageFile"]];
         [self.BarImage setImage: [UIImage imageWithData:curBar[@"imageFile"]]];
         NSLog(@"1st %@", bar.barImage);
-    }];
-    */
+    }];*/
+
 
 }
 

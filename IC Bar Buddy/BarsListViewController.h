@@ -11,4 +11,6 @@
 
 @interface BarsListViewController : PFQueryTableViewController
 
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
