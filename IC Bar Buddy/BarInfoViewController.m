@@ -118,14 +118,6 @@
                 /**/
                 //NSLog(@"%@", self.curUser.currentBar);
                 [user setObject:bar.barName forKey:@"CurrentBar"];
-                //self.curUser.currentBar = user[@"CurrentBar"];
-                //self.curUser.userBarActivity = user[@"BarActivity"];
-                /*
-                NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
-                [dateformate setDateFormat:@"EEEE, dd MMMM yyyy hh:mm a"];
-                NSString *date_String=[dateformate stringFromDate:[NSDate date]];
-                [user setObject:date_String forKey:@"TimeCheckedIn"];
-                 */
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateStyle:NSDateFormatterLongStyle];
                 [formatter setTimeStyle:NSDateFormatterLongStyle];
