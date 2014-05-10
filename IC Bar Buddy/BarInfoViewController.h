@@ -12,6 +12,7 @@
 @interface BarInfoViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *BarImage;
+@property (weak, nonatomic) IBOutlet UILabel *peopleCheckedIn;
 
 @property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *barHoursLabel;

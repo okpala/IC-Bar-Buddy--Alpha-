@@ -10,4 +10,5 @@
 
 @interface SettingViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @end

@@ -46,6 +46,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.enterAppButton.layer.cornerRadius = 10;
+    self.enterAppButton.clipsToBounds = YES;
+    
     [FBProfilePictureView class];
     // Do any additional setup after loading the view.
     self.enterAppButton.hidden = true;
@@ -125,47 +128,6 @@
     self.curUser.profilePictureView = user.id;
     self.userID = user.id;
     self.userName = user.name;
-     /*
-    PFQuery *query1 = [PFQuery queryWithClassName:@"Users"];
-    [query1 whereKey:@"FacebookID" equalTo: user.id];
-
-    if ([query1 countObjects] == 0){
-        PFObject *usersDatabase = [PFObject objectWithClassName:@"Users"];
-        usersDatabase[@"FacebookID"] = user.id;
-        usersDatabase[@"Name"] = user.name;
-        usersDatabase[@"CurrentBar"] = @"NA";
-        usersDatabase[@"TimeCheckedIn"] = @"NA";
-        [usersDatabase saveInBackground];
-        //self.curUser.userDatabaseID = [usersDatabase objectId];
-        
-    }
-    
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Users"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            //NSLog(@"Successfully retrieved %d scores.", objects.count);
-            // Do something with the found objects
-            
-            self.curUser.usersInfo = objects;
-            for (PFObject *item in objects){
-                if([item[@"FacebookID"] isEqualToString:user.id]){
-                    self.curUser.userDatabaseID = [item objectId];
-                    self.curUser.currentBar = item[@"CurrentBar"];
-                    self.curUser.favoriteBars = item[@"Favorites"];
-                    self.curUser.userBarActivity = [[item[@"BarActivity"] reverseObjectEnumerator] allObjects];
-                    //NSLog(@"%@", self.curUser.userDatabaseID);
-                    break;
-                }
-            }
-           
-        } else {
-            // Log details of the failure
-            //NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-   */
     NSThread* myThread = [[NSThread alloc] initWithTarget:self
                                                  selector:@selector(myThreadMainMethod:)
                                                    object:nil];

@@ -69,6 +69,15 @@
                                   
                               }
                           }];
+    PFQuery *query2 = [PFQuery queryWithClassName:@"Users"];
+    [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.curUser.usersInfo = objects;
+            
+        } else {
+            
+        }
+    }];
     
     if (self.curUser.userFriends.count == 0){
         self.label.text = @"None of your Facebook Friends have this app Installed.";
@@ -91,7 +100,7 @@
     
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
-    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+    [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
 selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

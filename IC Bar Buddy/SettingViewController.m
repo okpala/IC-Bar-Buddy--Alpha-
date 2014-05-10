@@ -45,6 +45,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.logoutButton.layer.cornerRadius = 10;
+    self.logoutButton.clipsToBounds = YES;
     
 }
 

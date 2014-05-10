@@ -42,7 +42,14 @@
             int amount = [[curBar objectForKey:@"Number_Checked_in"] intValue] + 1;
             [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
             [curBar saveInBackground];
+            if (amount == 1){
+                self.peopleCheckedIn.text = @"person is checked-in here";
+            }
+            else{
+                self.peopleCheckedIn.text = @"people are checked-in here";
+            }
             self.NumberOfPeopleCheckedInLabel.text = [NSString stringWithFormat:@"%@" , curBar[@"Number_Checked_in"]];
+            
         }];
         [self.checkInButton setTitle:@"Check-out" forState:UIControlStateNormal];
         //redish color
@@ -89,11 +96,18 @@
                         // Do something with the returned PFObject in the gameScore variable.
                         //NSLog(@"%@", curBar);
                         int amount = [[curBar objectForKey:@"Number_Checked_in"] intValue] - 1;
-                        if ( amount < 0){
-                           [curBar setObject:@1 forKey:@"Number_Checked_in"];
+                        if ( amount <= 0){
+                           [curBar setObject:@0 forKey:@"Number_Checked_in"];
                         }
                         else{
                             [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
+                        }
+                        
+                        if (amount  == 1){
+                            self.peopleCheckedIn.text = @"person is checked-in here";
+                        }
+                        else{
+                            self.peopleCheckedIn.text = @"people are checked-in here";
                         }
                         
                         [curBar saveInBackground];
@@ -135,9 +149,22 @@
             // Do something with the returned PFObject in the gameScore variable.
             //NSLog(@"%@", curBar);
             int amount = [[curBar objectForKey:@"Number_Checked_in"] intValue] - 1;
-            [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
+            if ( amount <= 0){
+                [curBar setObject:@0 forKey:@"Number_Checked_in"];
+            }
+            else{
+                [curBar setObject:[NSNumber numberWithInt:amount] forKey:@"Number_Checked_in"];
+            }
+
             [curBar saveInBackground];
             self.NumberOfPeopleCheckedInLabel.text = [NSString stringWithFormat:@"%@" , curBar[@"Number_Checked_in"]];
+            
+            if (amount  == 1){
+                self.peopleCheckedIn.text = @"person is checked-in here";
+            }
+            else{
+                self.peopleCheckedIn.text = @"people are checked-in here";
+            }
             
         }];
         [self.checkInButton setTitle:@"Check-in" forState:UIControlStateNormal];
@@ -216,25 +243,31 @@
     return self;
 }
 
-- (void)viewDidLoad
+-(void) callAfterTenSeconds:(NSTimer*)t
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.barAddressLabel.text = [NSString stringWithFormat:@"%@", bar.barAddress];
-    self.barNameLabel.text = [NSString stringWithFormat:@"%@ ", bar.barName];
-    self.barPhoneLabel.text = [NSString stringWithFormat:@"%@", bar.barPhone];
-    self.barHoursLabel.text = [NSString stringWithFormat:@"%@", bar.barHours];
+    [self updatePage];
+  
+}
+
+-(void) updatePage{
     PFQuery *numCheckedIn = [PFQuery queryWithClassName:@"Bars"];
     [numCheckedIn getObjectInBackgroundWithId:bar.barID block:^(PFObject *object, NSError *error) {
+        int amount = [[object objectForKey:@"Number_Checked_in"] intValue];
+        if (amount  == 1){
+            self.peopleCheckedIn.text = @"person is checked-in here";
+        }
+        else{
+            self.peopleCheckedIn.text = @"people are checked-in here";
+        }
+        
         self.NumberOfPeopleCheckedInLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"Number_Checked_in"]];
         //NSLog(@"favorites page %@", bar.NumberCheckedIn);
     }];
     NSInteger amount = 0;
     NSInteger position = 0;
     for (PFObject *item in self.curUser.usersInfo){
-       // NSLog(@"%@ -", item);
-       
+        // NSLog(@"%@ -", item);
+        
         //NSLog(@"%@", self.curBar);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uid == %@", item[@"FacebookID"]];
         NSArray *matchingObjs = [self.curUser.userFriends filteredArrayUsingPredicate:predicate];
@@ -242,7 +275,7 @@
             amount++;
             if (position < 220){
                 UIImageView *imageHolder = [[UIImageView alloc] initWithFrame:CGRectMake(position, 0, 40, 40)];
-                 //NSLog(@"%@ -", [matchingObjs objectAtIndex:0]);
+                //NSLog(@"%@ -", [matchingObjs objectAtIndex:0]);
                 UIImage *image = [UIImage imageWithData:
                                   [NSData dataWithContentsOfURL:
                                    [NSURL URLWithString:
@@ -256,6 +289,26 @@
     }
     self.NumberOfFriendsCheckedInLabel.text = [NSString stringWithFormat:@"%ld", (long)amount];
     
+}
+
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.checkInButton.layer.cornerRadius = 10;
+    self.checkInButton.clipsToBounds = YES;
+    
+    self.addToFavorites.layer.cornerRadius = 10;
+    self.addToFavorites.clipsToBounds = YES;
+    
+    self.barAddressLabel.text = [NSString stringWithFormat:@"%@", bar.barAddress];
+    self.barNameLabel.text = [NSString stringWithFormat:@"%@ ", bar.barName];
+    self.barPhoneLabel.text = [NSString stringWithFormat:@"%@", bar.barPhone];
+    self.barHoursLabel.text = [NSString stringWithFormat:@"%@", bar.barHours];
+    
+     [self updatePage];
     //NSLog(@"%@ -", self.curUser.currentBar);
     if ([self.curUser.currentBar isEqualToString:bar.barName]){
         [self.checkInButton setTitle:@"Check-out" forState:UIControlStateNormal];
@@ -284,6 +337,17 @@
         [self.BarImage setImage: [UIImage imageWithData:curBar[@"imageFile"]]];
         NSLog(@"1st %@", bar.barImage);
     }];*/
+    
+    if (bar.barImage != NULL){
+        NSURL *url = [NSURL URLWithString:bar.barImage.url];
+        
+        NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+
+       [self.BarImage setImage:[UIImage imageWithData:data]];
+    }
+    
+    [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
+                                   selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
 
 
 }

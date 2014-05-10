@@ -75,7 +75,6 @@
     //NSLog(@"viewDidAppear called");
     [self loadObjects];
     
-    
 }
 
 - (void)viewDidUnload

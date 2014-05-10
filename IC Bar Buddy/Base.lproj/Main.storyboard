@@ -122,6 +122,9 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="L10-yy-gTU"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="PD0-qK-rAR" id="Amr-lk-JDx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcL-aJ-KDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -581,6 +584,7 @@
                         <outlet property="barPhoneLabel" destination="zzp-hn-vPD" id="Cqz-UF-At2"/>
                         <outlet property="checkInButton" destination="4YU-Dv-Wmw" id="H68-hZ-Dgy"/>
                         <outlet property="friendsView" destination="uYW-sf-pH8" id="Kgd-WD-uPt"/>
+                        <outlet property="peopleCheckedIn" destination="y1e-4A-5IF" id="JSP-wD-qHc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAD-qo-dwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
