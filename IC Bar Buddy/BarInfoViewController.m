@@ -175,7 +175,7 @@
             // Do something with the returned PFObject in the gameScore variable.
             //NSLog(@"%@", user2);
             //add the bar to the Favorites array in the Users table
-            [user2 addUniqueObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone] forKey:@"Favorites"];
+            [user2 addUniqueObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone, bar.barImage] forKey:@"Favorites"];
             [user2 saveInBackground];
             self.curUser.favoriteBars = user2[@"Favorites"];
         }];
@@ -192,7 +192,7 @@
             // Do something with the returned PFObject in the gameScore variable.
             //NSLog(@"%@", user3);
             //add the bar to the Favorites array in the Users table
-            [user3 removeObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone] forKey:@"Favorites"];
+            [user3 removeObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone, bar.barImage] forKey:@"Favorites"];
             [user3 saveInBackground];
             self.curUser.favoriteBars = user3[@"Favorites"];
         }];
@@ -263,27 +263,19 @@
         [self.checkInButton setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
     }
     
-    if([self.curUser.favoriteBars containsObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone]]){
+    if([self.curUser.favoriteBars containsObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone, bar.barImage]]){
         [self.addToFavorites setTitle:@"Remove from Favorites" forState:UIControlStateNormal];
         //redish color
         [self.addToFavorites setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
     }
 
-    /*NSLog(@"2nd - %@", bar.barImage);
-    if([bar.barImage isEqualToString:@""]){
-        NSURL *imageURL = [NSURL URLWithString:bar.barImage];
-        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-        [self.BarImage  setImage: [UIImage imageWithData:imageData]];
-    }
-    
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Bars"];
-    [query getObjectInBackgroundWithId:bar.barID block:^(PFObject *curBar, NSError *error) {
+    if (bar.barImage != NULL){
+        NSURL *url = [NSURL URLWithString:bar.barImage.url];
         
-        bar.barImage = [NSString stringWithFormat:@"%@" , curBar[@"imageFile"]];
-        [self.BarImage setImage: [UIImage imageWithData:curBar[@"imageFile"]]];
-        NSLog(@"1st %@", bar.barImage);
-    }];*/
+        NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+        
+        [self.BarImage setImage:[UIImage imageWithData:data]];
+    }
 
 
 }
@@ -295,16 +287,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

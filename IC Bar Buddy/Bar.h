@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSString *barHours;
 @property (nonatomic, strong) NSString *barPhone;
 @property (nonatomic, strong) NSString *barID;
-@property (nonatomic, strong) NSString *barImage;
+@property (nonatomic, strong) PFFile *barImage;
 @property (nonatomic, strong) NSString *NumberCheckedIn;
 @property (nonatomic, strong) NSArray *barObject;
 @end

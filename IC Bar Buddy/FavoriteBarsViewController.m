@@ -213,6 +213,7 @@
         bar.barPhone = [self.curUser.favoriteBars objectAtIndex:indexPath.row][4];
         bar.barAddress = [self.curUser.favoriteBars objectAtIndex:indexPath.row][2];
         bar.barID = [self.curUser.favoriteBars objectAtIndex:indexPath.row][0];
+        bar.barImage = [self.curUser.favoriteBars objectAtIndex:indexPath.row][5];
         
         PFQuery *query3 = [PFQuery queryWithClassName:@"Bars"];
         [query3 getObjectInBackgroundWithId:[self.curUser.favoriteBars objectAtIndex:indexPath.row][0] block:^(PFObject *object, NSError *error) {

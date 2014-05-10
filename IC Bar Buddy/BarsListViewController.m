@@ -165,7 +165,7 @@
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         Bar *bar = [[Bar alloc] init];
         bar.barID = [object objectId];
-       
+        
         bar.barName = [object objectForKey:@"Name"];
         bar.barHours = [object objectForKey:@"Hours"];
         bar.barPhone = [object objectForKey:@"Phone"];
@@ -176,8 +176,8 @@
         //bar.barObject = self.objects;
         //NSLog(@"barID - %@", bar.barID);
         destViewController.bar = bar;
-               
-
+        
+        
         
     }
 }
