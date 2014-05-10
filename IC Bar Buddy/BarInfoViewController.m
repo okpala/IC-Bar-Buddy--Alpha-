@@ -322,14 +322,7 @@
         [self.addToFavorites setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
     }
 
-    if (bar.barImage != NULL){
-        NSURL *url = [NSURL URLWithString:bar.barImage.url];
-        
-<<<<<<< HEAD
-        bar.barImage = [NSString stringWithFormat:@"%@" , curBar[@"imageFile"]];
-        [self.BarImage setImage: [UIImage imageWithData:curBar[@"imageFile"]]];
-        NSLog(@"1st %@", bar.barImage);
-    }];*/
+
     
     if (bar.barImage != NULL){
         NSURL *url = [NSURL URLWithString:bar.barImage.url];
@@ -341,12 +334,6 @@
     
     [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
                                    selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
-=======
-        NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-        
-        [self.BarImage setImage:[UIImage imageWithData:data]];
-    }
->>>>>>> FETCH_HEAD
 
 
 }
