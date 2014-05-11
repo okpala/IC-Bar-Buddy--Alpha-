@@ -17,4 +17,5 @@
 @synthesize barID;
 @synthesize NumberCheckedIn;
 @synthesize barImage;
+@synthesize barObject;
 @end

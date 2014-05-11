@@ -30,141 +30,13 @@
 }
 
 
-
-- (id)initWithCoder:(NSCoder *)aCoder
-
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-	self = [super initWithCoder:aCoder];
-	if (self) {
-        // Custom the table
-        
-        // The className to query on
-        self.parseClassName = @"Users";
-        
-        // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"Favorites";
-        
-        // Whether the built-in pull-to-refresh is enabled
-        self.pullToRefreshEnabled = YES;
-        
-        // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
-        
-        // The number of objects to show per page
-        self.objectsPerPage = 50;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
     }
     return self;
-}
-
-#pragma mark - View lifecycle
-
--(void) callAfterTenSeconds:(NSTimer*)t
-{
-    
-    if ([self.curUser.favoriteBars count] == 0){
-        self.label.text = @"You have no favorite bars saved";
-    }
-    else{
-        self.label.text = @"";
-    }
-
-    [self loadObjects];
-    
-}
-
-- (void)viewDidLoad
-{
-    
-    [super viewDidLoad];
-    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
-    [self.label setCenter:self.tableView.center];
-    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:20]];
-    if (self.curUser.favoriteBars.count == 0){
-        self.label.text = @"You have no favorite bars saved";
-    }
-    else{
-        self.label.text = @"";
-    }
-    [self.view addSubview:self.label];
-    
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
-    
-    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
-                                   selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
-    
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-   
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-    if (self.curUser.favoriteBars.count == 0){
-        self.label.text = @"You have no favorite bars saved";
-    }
-    else{
-        self.label.text = @"";
-    }
-    
-    [self loadObjects];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    //NSLog(@"viewDidAppear called");
-    [self loadObjects];
-    
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - Parse
-
-- (void)objectsDidLoad:(NSError *)error {
-    [super objectsDidLoad:error];
-    
-    // This method is called every time objects are loaded from Parse via the PFQuery
-    
-}
-
-- (void)objectsWillLoad {
-    [super objectsWillLoad];
-    
-    // This method is called before a PFQuery is fired to get more objects
-}
-
-
-// Override to customize what kind of query to perform on the class. The default is to query for
-// all objects ordered by createdAt descending.
-- (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    [query whereKey:@"objectId" equalTo:self.curUser.userDatabaseID];
-    
-    // If no objects are loaded in memory, we look to the cache first to fill the table
-    // and then subsequently do a query against the network.
-    if ([self.objects count] == 0) {
-      query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    }
-    
-    //[query orderByAscending:[self.curUser.favoriteBars objectAtIndex:indexPath.row][1]];
-    return query;
 }
 
 
@@ -175,9 +47,6 @@
 }
 
 
-
-// Override to customize the look of a cell representing an object. The default is to display
-// a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"favoriteBarCell";
     
@@ -200,6 +69,65 @@
     return cell;
 }
 
+
+- (void)viewDidLoad
+{
+    
+    [super viewDidLoad];
+    
+    self.tableView.dataSource = self;
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
+    [self.label setCenter:self.tableView.center];
+    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:20]];
+    if (self.curUser.favoriteBars.count == 0){
+        self.label.text = @"You have no favorite bars saved";
+    }
+    else{
+        self.label.text = @"";
+    }
+    [self.view addSubview:self.label];
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+                                   selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    
+}
+
+
+-(void) callAfterTenSeconds:(NSTimer*)t
+{
+    
+    if ([self.curUser.favoriteBars count] == 0){
+        self.label.text = @"You have no favorite bars saved";
+    }
+    else{
+        self.label.text = @"";
+    }
+    
+    [self.tableView reloadData];
+    
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //NSLog(@"viewDidAppear called");
+    [self.tableView reloadData];
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -225,5 +153,6 @@
         
     }
 }
+
 
 @end
