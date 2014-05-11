@@ -73,18 +73,18 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
-    [self.label setCenter:self.tableView.center];
-    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:36]];
+    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 220, 20)];
+    [self.label setCenter:self.view.center];
+    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensed-Medium" size:20]];
     if ([self.curUser.userBarActivity count] == 0){
-        self.label.text = @"You have no previous activity";
+        self.label.text = @"You have no previous activity.";
     }
     else{
         self.label.text = @"";
     }
     [self.view addSubview:self.label];
     
-    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+        [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
                                    selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
     
     [self LoadWindow];
@@ -106,6 +106,7 @@
 
 -(void) callAfterTenSeconds:(NSTimer*)t
 {
+    if ([self isViewLoaded] && self.view.window) {
     PFQuery *queryUserActivity = [PFQuery queryWithClassName:@"Users"];
     [queryUserActivity whereKey:@"FacebookID" equalTo:self.curUser.profilePictureView];
     [queryUserActivity findObjectsInBackgroundWithBlock:^(NSArray *user, NSError *error) {
@@ -116,18 +117,26 @@
     }];
     
     if ([self.curUser.userBarActivity count] == 0){
-        self.label.text = @"You have no previous activity";
+        self.label.text = @"You have no previous activity.";
     }
     else{
         self.label.text = @"";
     }
 
     [self.tableView reloadData];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //NSLog(@"viewDidAppear called");
+    
+    if ([self.curUser.userBarActivity count] == 0){
+        self.label.text = @"You have no previous activity.";
+    }
+    else{
+        self.label.text = @"";
+    }
     [self LoadWindow];
     [self.tableView reloadData];
     

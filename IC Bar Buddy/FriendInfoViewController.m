@@ -74,6 +74,7 @@
 
 -(void) callAfterASecond:(NSTimer*)t
 {
+    if ([self isViewLoaded] && self.view.window) {
     [self displayLabel];
     [self.tableView reloadData];
     
@@ -96,7 +97,7 @@
         
         
     }];
-    
+    }
 }
 
 //BRITTANY DESIGN THIS LABEL
@@ -116,7 +117,8 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
+    
+        [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
                                    selector: @selector(callAfterASecond:) userInfo: nil repeats: YES];
     
     self.friendLabel.text = self.selectedFriend.user;
@@ -130,10 +132,9 @@
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
-    [self.label setCenter:self.tableView.center];
+    [self.label setCenter:self.view.center];
     [self.view addSubview:self.label];
-    self.label.numberOfLines = 2;
-    [self.label sizeToFit];
+    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensed-Medium" size:20]];
     
 }
 

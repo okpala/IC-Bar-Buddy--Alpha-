@@ -214,11 +214,13 @@
             [user3 removeObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone, bar.barImage] forKey:@"Favorites"];
             [user3 saveInBackground];
             self.curUser.favoriteBars = user3[@"Favorites"];
+            NSLog(@"1- %@", self.curUser.favoriteBars);
         }];
         //change the button
         [self.addToFavorites setTitle:@"Add to Favorites" forState:UIControlStateNormal];
         //greenish color
         [self.addToFavorites setTitleColor:[UIColor colorWithRed:(94.0/255) green:(255.0/255) blue:(169.0/255) alpha:1.0 ] forState:UIControlStateNormal];
+        
     
     }
 }
@@ -237,7 +239,12 @@
 
 -(void) callAfterTenSeconds:(NSTimer*)t
 {
-    [self updatePage];
+    
+    if ([self isViewLoaded] && self.view.window) {
+        // viewController is visible
+        [self updatePage];
+        
+    }
   
 }
 
@@ -264,6 +271,12 @@
         } else {
             
         }
+    }];
+    
+    PFQuery *query5 = [PFQuery queryWithClassName:@"Users"];
+    [query5 getObjectInBackgroundWithId:self.curUser.userDatabaseID block:^(PFObject *user3, NSError *error) {
+        self.curUser.favoriteBars = user3[@"Favorites"];
+        //NSLog(@"2- %@", self.curUser.favoriteBars);
     }];
     
     NSInteger amount = 0;
@@ -304,6 +317,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.checkInButton.layer.cornerRadius = 10;
     self.checkInButton.clipsToBounds = YES;
@@ -323,14 +337,22 @@
         //redish color
         [self.checkInButton setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
     }
-    
+    //NSLog(@"f - %@",self.curUser.favoriteBars);
+    //NSLog(@"f - %@",@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone, bar.barImage]);
+    for (NSArray * item in self.curUser.favoriteBars){
+        if([[item objectAtIndex:0] isEqualToString:bar.barID] ){
+            [self.addToFavorites setTitle:@"Remove from Favorites" forState:UIControlStateNormal];
+            [self.addToFavorites setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
+            break;
+        }
+    }
+    /*
     if([self.curUser.favoriteBars containsObject:@[bar.barID, bar.barName, bar.barAddress, bar.barHours, bar.barPhone, bar.barImage]]){
         [self.addToFavorites setTitle:@"Remove from Favorites" forState:UIControlStateNormal];
         //redish color
         [self.addToFavorites setTitleColor:[UIColor colorWithRed:(237.0/255) green:(109.0/255) blue:(85.0/255) alpha:1.0 ] forState:UIControlStateNormal];
     }
-
-
+    */
     
     if (bar.barImage != NULL){
         NSURL *url = [NSURL URLWithString:bar.barImage.url];
@@ -340,9 +362,20 @@
        [self.BarImage setImage:[UIImage imageWithData:data]];
     }
     
+        [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
+                                   selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
+        
+    
+
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+   
     [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
                                    selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
-
+    
 
 }
 

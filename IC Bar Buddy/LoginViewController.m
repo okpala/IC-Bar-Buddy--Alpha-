@@ -109,6 +109,14 @@
             }
         }
     }];
+    PFQuery *query2 = [PFQuery queryWithClassName:@"Bars"];
+    [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"Number_Checked_in" ascending:true] ;
+            self.curUser.barObject = [[[objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]] reverseObjectEnumerator]  allObjects];
+            
+        }
+    }];
     
 }
 

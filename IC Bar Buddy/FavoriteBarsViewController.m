@@ -78,19 +78,19 @@
     self.tableView.dataSource = self;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 250, 20)];
-    [self.label setCenter:self.tableView.center];
-    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:20]];
+    self.label=  [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 235, 20)];
+    [self.label setCenter:self.view.center];
+    [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensed-Medium" size:20]];
     if (self.curUser.favoriteBars.count == 0){
-        self.label.text = @"You have no favorite bars saved";
+        self.label.text = @"You have no favorite bars saved.";
     }
     else{
         self.label.text = @"";
     }
     [self.view addSubview:self.label];
     
-    
-    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
+   
+        [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
                                    selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -101,22 +101,29 @@
 
 -(void) callAfterTenSeconds:(NSTimer*)t
 {
-    
+    if ([self isViewLoaded] && self.view.window) {
     if ([self.curUser.favoriteBars count] == 0){
-        self.label.text = @"You have no favorite bars saved";
+        self.label.text = @"You have no favorite bars saved.";
     }
     else{
         self.label.text = @"";
     }
     
     [self.tableView reloadData];
+    }
     
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //NSLog(@"viewDidAppear called");
+    if ([self.curUser.favoriteBars count] == 0){
+        self.label.text = @"You have no favorite bars saved.";
+    }
+    else{
+        self.label.text = @"";
+    }
+
     [self.tableView reloadData];
     
 }

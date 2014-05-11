@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Charles Okpala. All rights reserved.
 //
 
-#import "BarsListViewController.h"
+#import "BarsList2ViewController.h"
 #import "BarInfoViewController.h"
 #import "Bar.h"
 #import <Parse/Parse.h>
@@ -27,8 +27,6 @@
 	return _curUser;
 }
 
-
-/*
 - (id)initWithCoder:(NSCoder *)aCoder
 
 {
@@ -53,57 +51,35 @@
     }
     return self;
 }
-*/
+
 #pragma mark - View lifecycle
 -(void) callAfterTenSeconds:(NSTimer*)t
 {
-    if ([self isViewLoaded] && self.view.window) {
-    //NSLog(@"HEY");
-    PFQuery *query2 = [PFQuery queryWithClassName:@"Bars"];
-    [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            
-            NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"Number_Checked_in" ascending:true] ;
-            self.curUser.barObject = [[[objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]] reverseObjectEnumerator]  allObjects];
-            
-        }
-    }];
-
-    [self.tableView reloadData];
-    }
+    [self loadObjects];
     
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.dataSource = self;
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    //NSLog(@"%@", self.curUser.barObject);
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
     
-        [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
+    [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self
                                    selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
-        
-        
-
-     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    //[self.tableView reloadData];
+    //NSLog(@"viewDidAppear called");
+    [self loadObjects];
     
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    
-
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -124,7 +100,7 @@
 }
 
 #pragma mark - Parse
-/*
+
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     
@@ -177,54 +153,32 @@
     
     return cell;
 }
-*/
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"barCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    UILabel *barNameLabel = (UILabel*) [cell viewWithTag:101];
-    
-    barNameLabel.text = [self.curUser.barObject objectAtIndex:indexPath.row][@"Name"];
-    
-    UILabel *numCheckedInLabel = (UILabel*) [cell viewWithTag:102];
-    numCheckedInLabel.text = [ NSString stringWithFormat:@"%@",[self.curUser.barObject objectAtIndex:indexPath.row][@"Number_Checked_in"]];
-    return cell;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return self.curUser.barObject.count;
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    //if ([segue.identifier isEqualToString:@"showBarInfo"]) {
+    if ([segue.identifier isEqualToString:@"showBarInfo"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         BarInfoViewController *destViewController = segue.destinationViewController;
-       
+        
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
         Bar *bar = [[Bar alloc] init];
-        bar.barID =  [[self.curUser.barObject objectAtIndex:indexPath.row] objectId];
-        //NSLog(@"%@", bar.barID);
-        bar.barName = [self.curUser.barObject objectAtIndex:indexPath.row][@"Name"];//[object objectForKey:@"Name"];
-        //NSLog(@"%@", bar.barName);
-        bar.barHours = [self.curUser.barObject objectAtIndex:indexPath.row][@"Hours"];//[object objectForKey:@"Hours"];
-        bar.barPhone = [self.curUser.barObject objectAtIndex:indexPath.row][@"Phone"];//[object objectForKey:@"Phone"];
-        bar.barAddress = [self.curUser.barObject objectAtIndex:indexPath.row][@"Address"];//[object objectForKey:@"Address"];
-        bar.barImage = [self.curUser.barObject objectAtIndex:indexPath.row][@"imageFile"];//[object objectForKey:@"imageFile"];
-         //NSLog(@"%@", bar.barImage);
-        bar.NumberCheckedIn = [self.curUser.barObject objectAtIndex:indexPath.row][@"Number_Checked_in"];//[object objectForKey:@"Number_Checked_in"];
+        bar.barID = [object objectId];
+        
+        bar.barName = [object objectForKey:@"Name"];
+        bar.barHours = [object objectForKey:@"Hours"];
+        bar.barPhone = [object objectForKey:@"Phone"];
+        bar.barAddress = [object objectForKey:@"Address"];
+        bar.barImage = [object objectForKey:@"imageFile"];
+        
+        bar.NumberCheckedIn = [object objectForKey:@"Number_Checked_in"];
         //bar.barObject = self.objects;
         //NSLog(@"barID - %@", bar.barID);
         destViewController.bar = bar;
         
         
         
-    //}
+    }
 }
 
 @end

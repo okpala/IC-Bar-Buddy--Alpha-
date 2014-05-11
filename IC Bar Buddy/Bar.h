@@ -19,4 +19,5 @@
 @property (nonatomic, strong) PFFile *barImage;
 @property (nonatomic, strong) NSString *NumberCheckedIn;
 @property (nonatomic, strong) NSArray *barObject;
+
 @end

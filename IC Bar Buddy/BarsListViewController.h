@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface BarsListViewController : PFQueryTableViewController
-
+//@interface BarsListViewController : PFQueryTableViewController
+@interface BarsListViewController :  UIViewController <UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

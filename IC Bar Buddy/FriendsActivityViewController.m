@@ -50,6 +50,7 @@
 }
 -(void) callAfterTenSeconds:(NSTimer*)t
 {
+    if ([self isViewLoaded] && self.view.window) {
     NSString *query = [NSString stringWithFormat:@"SELECT name,uid, pic_small, pic_square FROM user WHERE is_app_user = 1 AND uid IN (SELECT uid2 FROM friend WHERE uid1 = %@) order by concat(first_name,last_name) asc", self.curUser.profilePictureView];
     // Set up the query parameter
     NSDictionary *queryParam = @{ @"q": query };
@@ -66,6 +67,7 @@
                                   //NSLog(@"Result: %@", result);
                                   // Get the friend data to display
                                   self.curUser.userFriends = (NSArray *) result[@"data"];
+                                  ;
                                   
                               }
                           }];
@@ -78,15 +80,16 @@
             
         }
     }];
-    
+   
     if (self.curUser.userFriends.count == 0){
-        self.label.text = @"None of your Facebook Friends have this app Installed.";
+        self.label.text = @"   None of your Facebook Friends have this app Installed.";
     }
     else{
         self.label.text = @"";
     }
 
     [self.tableView reloadData];
+    }
 }
 
 
@@ -100,18 +103,19 @@
     
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
+    
     [NSTimer scheduledTimerWithTimeInterval: 1.0 target: self
 selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(20, 0, 300, 20)];
-     [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensedRegular" size:36]];
-    self.label.numberOfLines = 2;
-    [self.label sizeToFit];
-    [self.label setCenter:self.tableView.center];
+    self.label =  [[UILabel alloc] initWithFrame: CGRectMake(0, 150, 304 , 20)];
+    //self.label.numberOfLines = 2;
+    //[self.label sizeToFit];
+    //[self.label setCenter:self.view.center];
+     [self.label setFont:[UIFont fontWithName:@"AvenirNextCondensed-Medium" size:15]];
     if (self.curUser.userFriends.count == 0){
-        self.label.text = @"None of your Facebook Friends have this app Installed.";
+        self.label.text = @"   None of your Facebook Friends have this app Installed.";
     }
     else{
        self.label.text = @"";
@@ -151,12 +155,7 @@ selector: @selector(callAfterTenSeconds:) userInfo: nil repeats: YES];
                        [NSURL URLWithString:
                        friend[@"pic_square"]]]];
     cell.imageView.image = image;
-/*
-    NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
-    [dateformate setDateFormat:@"EEEE, dd MMMM yyyy"];
-    NSString *date_String=[dateformate stringFromDate:[NSDate date]];
-    NSLog(@"formattedDateString: %@", date_String);
- */
+
     for(NSDictionary *item in self.curUser.usersInfo){
         //NSLog(@"%@", item[@"FacebookID"]);
         if ([friend[@"uid"] isEqualToString: item[@"FacebookID"]]){

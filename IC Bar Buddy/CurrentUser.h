@@ -24,6 +24,7 @@
 @property (strong, nonatomic)  NSNumber *IsUserInABar;
 @property (strong, nonatomic)  NSString *currentBar;
 @property (strong, nonatomic) NSArray *favoriteBars;
+@property (nonatomic, strong) NSArray *barObject;
 
 
 @end
